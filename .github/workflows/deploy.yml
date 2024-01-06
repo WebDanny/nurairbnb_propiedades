@@ -23,7 +23,7 @@ jobs:
             java-version: 17
             distribution: 'zulu'
         - name: Copy Docker file
-          run: cp ${{ github.workspace }}/docker-deploy/Dockerfile ${{ github.workspace }}/Dockerfile
+          run: cp ${{ github.workspace }}/Dockerfile ${{ github.workspace }}/Dockerfile
         - name: Build and push Docker images
           uses: docker/build-push-action@v1
           with:
