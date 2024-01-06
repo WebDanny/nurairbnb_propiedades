@@ -1,0 +1,117 @@
+import org.gradle.api.tasks.testing.logging.TestLogEvent
+
+
+plugins {
+	id 'java'
+	id 'jacoco'
+	id "org.sonarqube" version "4.4.1.3373"
+	id("com.github.johnrengelman.shadow") version "7.0.0"
+	id 'idea'
+	id 'com.diffplug.spotless' version '5.0.0'
+
+
+}
+
+repositories {
+	mavenCentral()
+}
+
+dependencies {
+	implementation 'org.jacoco:org.jacoco.core:0.8.11'
+}
+
+
+group 'com.danny'
+version '1.0-SNAPSHOT'
+sourceCompatibility = JavaVersion.VERSION_17
+targetCompatibility = JavaVersion.VERSION_17
+apply from: file('gradle/heroku/clean.gradle')
+
+subprojects {
+	apply plugin: 'com.github.johnrengelman.shadow'
+	apply plugin: 'java'
+	apply plugin: 'jacoco'
+
+
+	repositories {
+		mavenCentral()
+	}
+
+	test {
+		finalizedBy jacocoTestReport
+		testLogging {
+			events TestLogEvent.FAILED,
+					TestLogEvent.PASSED,
+					TestLogEvent.SKIPPED
+		}
+	}
+	jacocoTestReport {
+		//dependsOn 'test'
+		reports {
+			xml.required = true
+			html.required = true
+			html.destination file("build/reports/jacoco")
+		}
+		//reportsDir = file("$buildDir/jacoco-report")
+
+	}
+
+}
+project(':ShareKernel') {
+	dependencies {}
+}
+
+project(':CheckInDomain') {
+	dependencies {
+		implementation project(':ShareKernel')
+	}
+}
+
+project(':CheckIn.Application') {
+	dependencies {
+		implementation project(':ShareKernel'), project(':CheckInDomain')
+		testImplementation project(':CheckInDomain').sourceSets.test.output
+	}
+}
+
+project('CheckIn.Infraestructure') {
+	dependencies {
+		implementation project(':ShareKernel'), project(':CheckInDomain'), project(':CheckIn.Application')
+		testImplementation project(':CheckInDomain').sourceSets.test.output, project(':CheckIn.Application').sourceSets.test.output
+	}
+}
+
+project('CheckInApi') {
+	dependencies {
+		implementation project(':ShareKernel'),
+				project(':CheckInDomain'),
+				project(':CheckIn.Infraestructure'),
+				project(':CheckIn.Application')
+		testImplementation project(':CheckInDomain').sourceSets.test.output,
+				project(':CheckIn.Application').sourceSets.test.output
+	}
+}
+
+
+sonar {
+	properties {
+		property "sonar.gradle.skipCompile", "true"
+		property "sonar.projectKey", "WebDanny_nurairbnb2"
+		property "sonar.organization", "webdanny"
+		property "sonar.host.url", "https://sonarcloud.io"
+		property "sonar.token","13d7f0f6271ebdd37d8dd87fdd39efb1f1e72a46"
+
+	}
+}
+
+spotless {
+	java {
+		googleJavaFormat()
+	}
+}
+
+
+
+
+
+
