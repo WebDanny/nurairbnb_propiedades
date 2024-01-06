@@ -9,8 +9,6 @@ on:
 
 jobs:
   build:
-
-
     name: Checkout files
     runs-on: ubuntu-latest
     steps:
