@@ -8,7 +8,8 @@ RUN apk add --no-cache tzdata && \
     echo "America/La_Paz" > /etc/timezone
 RUN mkdir /logs
 
-COPY *.jar /app.jar
+WORKDIR dist
+COPY *.jar dist/app.jar
 
 EXPOSE 8080
-ENTRYPOINT ["java", "-jar", "/app.jar", "--server.port=8080"]
+ENTRYPOINT ["java", "-jar", "dist/app.jar", "--server.port=8080"]
