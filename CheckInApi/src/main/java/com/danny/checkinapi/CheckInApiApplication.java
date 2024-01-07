@@ -81,11 +81,13 @@ public class CheckInApiApplication {
 
   @Bean(name = "propiedadRepository")
   public PropiedadRepository propiedadRepository() {
+
     return new PropiedadJpaRepository();
   }
 
   @Bean(name = "tipoPropiedadRepository")
   public TipoPropiedadRepository tipoPropiedadRepository() {
+
     return new TipoPropiedadJpaRepository();
   }
 
