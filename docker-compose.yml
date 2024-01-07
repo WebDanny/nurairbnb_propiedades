@@ -2,14 +2,14 @@ version: "3.8"
 services:
   java_app:
     container_name: java_app
-    image: dannyhs/propiedades:2ca193d215413abeaeb85ce7cd04a1
+    image: dannyhs/propiedades:1d6f865833371f26544db1f0bf27c4
     build: .
     ports:
-      - 8083:8083
+      - 8083:8080
     environment:
-      - DATA_BASE_URL=jdbc:postgresql://java_db:5432/nurairbnbc
-      - DATA_BASE_USERNAME=postgres
-      - DATA_BASE_PASSWORD=Estudiar1995
+      - DATA_BASE_URL=jdbc:postgresql://db-postgresql-nyc3-79796-do-user-15512334-0.c.db.ondigitalocean.com:25060/nurairbnbc
+      - DATA_BASE_USERNAME=doadmin
+      - DATA_BASE_PASSWORD=AVNS_0wmhCcsag4WsAFG6qB0
       - PORT=8083
     depends_on:
       - java_db
