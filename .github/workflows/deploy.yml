@@ -41,6 +41,7 @@ jobs:
           SONAR_TOKEN: 72751a83a35bb8b6e2816388ee284d67bc7e0e2a
         run: ./gradlew build
   build:
+    needs: prebuild
     name: Checkout files
     runs-on: ubuntu-latest
     steps:
