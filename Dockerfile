@@ -8,10 +8,8 @@ RUN apk add --no-cache tzdata && \
     echo "America/La_Paz" > /etc/timezone
 RUN mkdir /logs
 
-RUN gradle build || return 0
-
 ARG APP_USER=nurairbnbuser
-ARG JAR_FILE=CheckInApi/build/libs/CheckInApi-1.0.jar
+ARG JAR_FILE=target/CheckInApi-1.0.jar
 
 
 COPY $JAR_FILE /app.jar
