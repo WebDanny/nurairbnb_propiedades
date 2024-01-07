@@ -9,7 +9,7 @@ RUN apk add --no-cache tzdata && \
 RUN mkdir /logs
 
 ARG APP_USER=nurairbnbuser
-ARG JAR_FILE=../CheckInApi/build/libs/CheckInApi-1.0.jar
+ARG JAR_FILE=nurairbnb_propiedades/CheckInApi/build/libs/CheckInApi-1.0.jar
 
 
 COPY $JAR_FILE /app.jar
