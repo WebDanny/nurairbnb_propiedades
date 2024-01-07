@@ -51,6 +51,19 @@ jobs:
         with:
             username: dannyhs
             password: AL@banza06**
+      - name: Archive go artifact
+        uses: actions/upload-artifact@v3
+        with:
+            name: 'checkinjar'
+            path: 'CheckInApi-1.0.jar'
+      - name: Download go bin artifact
+        uses: actions/download-artifact@v3
+        with:
+            name: 'CheckInApi-1.0.jar'
+      - name: Check downloaded artifact
+        run: |
+            pwd
+            ls -lah
       - name: Build the Docker image
         run: docker build . --file Dockerfile --tag ${{secrets.DOCKERHUB_USER}}/${{secrets.REPO_NAME}}:${{steps.vars.outputs.tag}}
       - name: Publish dockerimage to docker hub
