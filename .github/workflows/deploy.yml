@@ -74,6 +74,8 @@ jobs:
       - name: read files
         run: |
             pwd
+      - name: Clean up Docker
+        run: docker system prune -af
       - name: Build and push Docker images
         uses: docker/build-push-action@v5
         with:
