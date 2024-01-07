@@ -109,15 +109,15 @@ spotless {
 		googleJavaFormat()
 	}
 }
-/*jar {
+jar {
 	enabled = false
 	archiveClassifier=''
-}*/
+}
 
 task copyJarToBin {
 	copy {
 		from 'CheckInApi/build/libs/CheckInApi-1.0.jar'
-		into "/build/libs/nurairbnb_propiedades-1.0-SNAPSHOT.jar"
+		into "/build/libs/"
 	}
 }
 
