@@ -96,10 +96,10 @@ project('CheckInApi') {
 sonar {
 	properties {
 		property "sonar.gradle.skipCompile", "true"
-		property "sonar.projectKey", "WebDanny_nurairbnb2"
+		property "sonar.projectKey", "WebDanny_nurairbnb_propiedades"
 		property "sonar.organization", "webdanny"
 		property "sonar.host.url", "https://sonarcloud.io"
-		property "sonar.token","13d7f0f6271ebdd37d8dd87fdd39efb1f1e72a46"
+		property "sonar.token","7734da45353a9c8d743a6ff1e5b08d944a35f6fe"
 
 	}
 }

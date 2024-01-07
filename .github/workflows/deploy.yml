@@ -41,8 +41,8 @@ jobs:
       - name: Build and analyze
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}  # Needed to get PR information, if any
-          SONAR_TOKEN: 72751a83a35bb8b6e2816388ee284d67bc7e0e2a
-        run: ./gradlew build --scan
+          SONAR_TOKEN: 7734da45353a9c8d743a6ff1e5b08d944a35f6fe
+        run: ./gradlew build --scan sonar --info
       - name: Get the version
         id: vars
         run: echo ::set-output name=tag::$(echo ${GITHUB_SHA:10})
