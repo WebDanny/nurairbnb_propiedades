@@ -65,16 +65,17 @@ jobs:
         uses: actions/upload-artifact@v3
         with:
             name: 'Package'
-            path: staging
+            path: CheckInApi/build/libs
       - name: Download go bin artifact
         uses: actions/download-artifact@v3
         with:
           name: 'Package'
-          path: staging
+          path: CheckInApi/build/libs
       - name: Check downloaded artifact
         run: |
-            pwd
-            ls -lah
+          pwd
+          cd CheckInApi/build/libs
+          ls -lah
       - name: Build the Docker image
         run: docker build . --file Dockerfile --tag ${{secrets.DOCKERHUB_USER}}/${{secrets.REPO_NAME}}:${{steps.vars.outputs.tag}}
       - name: Publish dockerimage to docker hub
