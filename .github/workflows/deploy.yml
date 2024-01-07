@@ -36,49 +36,35 @@ jobs:
           path: ~/.gradle/caches
           key: ${{ runner.os }}-gradle-${{ hashFiles('**/*.gradle') }}
           restore-keys: ${{ runner.os }}-gradle
-      - name: Setup Gradle
+      - name: Setup Gradlegit c
         uses: gradle/gradle-build-action@v2
       - name: Build and analyze
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}  # Needed to get PR information, if any
           SONAR_TOKEN: 72751a83a35bb8b6e2816388ee284d67bc7e0e2a
         run: ./gradlew build --scan
+      - name: Get the version
+        id: vars
+        run: echo ::set-output name=tag::$(echo ${GITHUB_SHA:10})
+      - name: Docker login
+        env:
+          DOCKER_USERNAME: ${{ secrets.DOCKERHUB_USER }}
+          DOCKER_PASSWORD: ${{ secrets.DOCKERHUB_PASSWORD }}
+        run: docker login -u="$DOCKER_USERNAME" -p="$DOCKER_PASSWORD" https://registry.docker.io/v2/
+      - name: Build the Docker image
+        run: docker build . --file Dockerfile --tag ${{secrets.DOCKERHUB_USER}}/${{secrets.REPO_NAME}}:${{steps.vars.outputs.tag}}
+      - name: Publish dockerimage to docker hub
+        run: docker push ${{secrets.docker_username}}/${{secrets.repo_name}}:${{steps.vars.outputs.tag}}
+      - name: Build Docker image with latest tag
+        run: docker build . --file Dockerfile --tag ${{secrets.DOCKERHUB_USER}}/${{secrets.repo_name}}:latest
+      - name: Publish dockerimage to docker hub
+        run: docker push ${{secrets.docker_username}}/${{secrets.repo_name}}:latest
       - name: Upload build reports
         uses: actions/upload-artifact@v3
         if: always()
         with:
             name: build-gradle
             path: CheckInApi/build/libs/CheckInApi-1.0.jar
-  build:
-    needs: prebuild
-    name: Checkout files
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v3
-        with:
-          fetch-depth: 0  # Shallow clones should be disabled for a better relevancy of analysis
-      - name: Set up JDK 17
-        uses: actions/setup-java@v3
-        with:
-          java-version: 17
-          distribution: 'zulu'
-      - name: Setup Docker build
-        uses: docker/setup-buildx-action@v1
-
-      - name: login
-        uses: docker/login-action@v3
-        with:
-          username: dannyhs
-          password: AL@banza06**
-
-      - name: Download artifact
-        uses: actions/download-artifact@v2
-      - name: Build and push Docker images
-        uses: docker/build-push-action@v2
-        with:
-          tags: dannyhs/propiedades:v${{github.run_number}}
-          push: true
-
 
   deploy:
     needs: build
@@ -101,3 +87,4 @@ jobs:
 
       - name: Provision Droplet and deploy container
         run: doctl compute droplet create "$GIT_TAG_NAME" --image docker-18-04 --size s-1vcpu-1gb --region nyc1 --wait
+>>>>>>> parent of e36e786 (add test)
