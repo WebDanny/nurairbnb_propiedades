@@ -60,7 +60,6 @@ jobs:
           pwd
           cd CheckInApi/build/libs
           ls -lah
-      - run: mkdir staging && cp *.jar staging
       - name: Archive go artifact
         uses: actions/upload-artifact@v3
         with:
