@@ -7,12 +7,12 @@ RUN apk add --no-cache tzdata && \
     cp /usr/share/zoneinfo/America/La_Paz /etc/localtime && \
     echo "America/La_Paz" > /etc/timezone
 RUN mkdir /logs
-RUN cd CheckInApi/build/libs
+
 ARG APP_USER=nurairbnbuser
 ARG JAR_FILE=CheckInApi-1.0.jar
 
 
-COPY $JAR_FILE /app.jar
+COPY build/libs/*.jar /app.jar
 RUN adduser -D $APP_USER && \
     chown $APP_USER /app.jar /logs
 USER $APP_USER
