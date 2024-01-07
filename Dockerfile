@@ -9,10 +9,10 @@ RUN apk add --no-cache tzdata && \
 RUN mkdir /logs
 
 ARG APP_USER=nurairbnbuser
-ARG JAR_FILE=CheckInApi-1.0.jar
+ARG JAR_FILE=build/libs/CheckInApi-*.jar
 
 
-COPY build/libs/CheckInApi-1.0.jar /app.jar
+COPY $JAR_FILE /app.jar
 RUN adduser -D $APP_USER && \
     chown $APP_USER /app.jar /logs
 USER $APP_USER
