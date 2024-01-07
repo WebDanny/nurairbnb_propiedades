@@ -110,6 +110,13 @@ spotless {
 	}
 }
 
+task copyJarToBin {
+	copy {
+		from 'CheckInApi/build/libs/CheckInApi-1.0.jar'
+		into "/build/libs/"
+	}
+}
+
 
 
 
