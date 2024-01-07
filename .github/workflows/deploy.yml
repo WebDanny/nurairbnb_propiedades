@@ -51,6 +51,10 @@ jobs:
         with:
             username: dannyhs
             password: AL@banza06**
+      - name: Check downloaded artifact
+        run: |
+          pwd
+          ls -lah
       - run: mkdir staging && cp *.jar staging
       - name: Archive go artifact
         uses: actions/upload-artifact@v3
