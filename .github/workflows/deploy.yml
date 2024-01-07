@@ -100,4 +100,4 @@ jobs:
           token: ${{ secrets.DIGITALOCEAN_ACCESS_TOKEN}}
 
       - name: Provision Droplet and deploy container
-        run: doctl compute droplet create propiedades --image docker-18-04 --size s-1vcpu-1gb --region nyc1 --wait
+        run: doctl compute droplet create propiedades --image dannyhs/propiedades:2a4b97b9f0966179487fdd5d3a3dec --size s-1vcpu-1gb --region nyc1 --wait
