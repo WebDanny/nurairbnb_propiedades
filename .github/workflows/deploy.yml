@@ -48,7 +48,7 @@ jobs:
         if: always()
         with:
             name: build-gradle
-            path: CheckInApi/build/libs
+            path: CheckInApi/build/libs/CheckInApi-1.0.jar
   build:
     needs: prebuild
     name: Checkout files
