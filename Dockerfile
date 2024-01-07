@@ -8,13 +8,9 @@ RUN apk add --no-cache tzdata && \
     echo "America/La_Paz" > /etc/timezone
 RUN mkdir /logs
 
-ARG APP_USER=nurairbnbuser
 
 
 COPY *.jar /app.jar
-RUN adduser -D $APP_USER && \
-    chown $APP_USER /app.jar /logs
-USER $APP_USER
-ENV JAVA_TOOL_OPTIONS="-XX:+UseG1GC"
+
 EXPOSE 8080
 ENTRYPOINT ["java", "-jar", "/app.jar", "--server.port=8080"]
