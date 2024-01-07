@@ -55,3 +55,5 @@ jobs:
         run: docker build . --file Dockerfile --tag ${{secrets.DOCKERHUB_USER}}/${{secrets.REPO_NAME}}:${{steps.vars.outputs.tag}}
       - name: Publish dockerimage to docker hub
         run: docker push dannyhs/propiedades:${{steps.vars.outputs.tag}}
+      - run: ls -la
+      - run: ls dist
