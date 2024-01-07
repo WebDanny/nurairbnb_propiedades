@@ -8,8 +8,6 @@ RUN apk add --no-cache tzdata && \
     echo "America/La_Paz" > /etc/timezone
 RUN mkdir /logs
 
-
-
 COPY *.jar /app.jar
 
 EXPOSE 8080
