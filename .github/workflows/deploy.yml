@@ -71,6 +71,9 @@ jobs:
         with:
           username: dannyhs
           password: AL@banza06**
+      - name: read files
+        run: |
+            pwd
       - name: Build and push Docker images
         uses: docker/build-push-action@v5
         with:
