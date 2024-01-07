@@ -51,15 +51,17 @@ jobs:
         with:
             username: dannyhs
             password: AL@banza06**
+      - run: mkdir staging && cp *.jar staging
       - name: Archive go artifact
         uses: actions/upload-artifact@v3
         with:
-            name: 'checkinjar'
-            path: 'CheckInApi-1.0.jar'
+            name: 'Package'
+            path: staging
       - name: Download go bin artifact
         uses: actions/download-artifact@v3
         with:
-            name: 'CheckInApi-1.0.jar'
+          name: 'Package'
+          path: staging
       - name: Check downloaded artifact
         run: |
             pwd
@@ -68,5 +70,3 @@ jobs:
         run: docker build . --file Dockerfile --tag ${{secrets.DOCKERHUB_USER}}/${{secrets.REPO_NAME}}:${{steps.vars.outputs.tag}}
       - name: Publish dockerimage to docker hub
         run: docker push dannyhs/propiedades:${{steps.vars.outputs.tag}}
-      - run: ls -la
-      - run: ls dist
