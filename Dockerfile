@@ -9,7 +9,7 @@ RUN apk add --no-cache tzdata && \
 RUN mkdir /logs
 
 ARG APP_USER=nurairbnbuser
-ARG JAR_FILE=CheckInApi-1.0.jar
+ARG JAR_FILE=build-gradle/CheckInApi-1.0.jar
 
 
 COPY $JAR_FILE /app.jar
