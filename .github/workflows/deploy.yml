@@ -55,6 +55,11 @@ jobs:
         run: |
           pwd
           ls -lah
+      - name: verify files
+        run: |
+          pwd
+          cd CheckInApi/
+          ls -lah
       - run: mkdir staging && cp *.jar staging
       - name: Archive go artifact
         uses: actions/upload-artifact@v3
