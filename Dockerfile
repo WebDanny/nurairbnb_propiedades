@@ -12,7 +12,7 @@ ARG APP_USER=nurairbnbuser
 ARG JAR_FILE=build/libs/CheckInApi-*.jar
 
 
-COPY $JAR_FILE /app.jar
+COPY build/libs/*.jar /app.jar
 RUN adduser -D $APP_USER && \
     chown $APP_USER /app.jar /logs
 USER $APP_USER

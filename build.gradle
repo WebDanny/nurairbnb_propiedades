@@ -117,7 +117,10 @@ task copyJarToBin {
 	}
 }
 
-
+jar {
+	enabled = false
+	archiveClassifier=''
+}
 
 
 
