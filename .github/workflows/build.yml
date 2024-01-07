@@ -37,11 +37,4 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}  # Needed to get PR information, if any
           SONAR_TOKEN: 72751a83a35bb8b6e2816388ee284d67bc7e0e2a
-
-      - name: Upload build reports
-        uses: actions/upload-artifact@v3
-        if: always()
-        with:
-            name: target
-            path: target/
         run: ./gradlew build
