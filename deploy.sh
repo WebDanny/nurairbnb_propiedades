@@ -1,3 +1,3 @@
 #!/bin/bash
-hostname=$(curl http://169.254.169.254/metadata/v1/hostname)
-docker run -d -p 80:80 --name pedidos-"$hostname" jmacboy/pruebagitflow:"$hostname"
+hostname=$(curl http://147.182.164.95/metadata/v1/hostname)
+docker run -d -p 80:80 --name pedidos-"$hostname" WebDanny/nurairbnb_propiedades:"$hostname"
