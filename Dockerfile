@@ -8,7 +8,6 @@ RUN apk add --no-cache tzdata && \
     echo "America/La_Paz" > /etc/timezone
 RUN mkdir /logs
 
-WORKDIR dist
 COPY CheckInApi/build/libs/*.jar /
 
 EXPOSE 8080
