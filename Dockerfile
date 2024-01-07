@@ -9,7 +9,7 @@ RUN apk add --no-cache tzdata && \
 RUN mkdir /logs
 
 WORKDIR dist
-COPY *.jar dist/app.jar
+COPY CheckInApi/build/libs/*.jar /
 
 EXPOSE 8080
-ENTRYPOINT ["java", "-jar", "dist/app.jar", "--server.port=8080"]
+ENTRYPOINT ["java", "-jar", "CheckInApi-1.0.jar", "--server.port=8080"]
