@@ -57,16 +57,6 @@ public class CheckInApiApplication {
 
   @Autowired OrderManageServiceImpl orderManageService;
 
-  /* @KafkaListener(id = "reserve", topics = "reserve", groupId = "propiedades")
-  public void onEvent(Reserve o) {
-    LOG.info("Received: {}", o);
-    System.out.println("ESTADO: ---  " + o.getStatus());
-    //  GetPropiedadQuery  query = new GetPropiedadQuery(o.getPropiedad().getId().toString());
-    if (o.getStatus().name().equals("RESERVE")) orderManageService.reserve(o);
-    else System.out.println("no esta reservado ");
-    orderManageService.confirm(o);
-  }*/
-
   @Bean(name = "checkInRepository")
   public CheckInRepository checkInRepository() {
     return new CheckInJpaRepository();
