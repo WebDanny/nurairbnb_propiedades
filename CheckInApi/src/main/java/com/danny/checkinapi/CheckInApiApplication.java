@@ -87,7 +87,6 @@ public class CheckInApiApplication {
 
   @Bean(name = "tipoPropiedadRepository")
   public TipoPropiedadRepository tipoPropiedadRepository() {
-
     return new TipoPropiedadJpaRepository();
   }
 
