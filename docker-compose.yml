@@ -2,7 +2,7 @@ version: "3.8"
 services:
   java_app:
     container_name: java_app
-    image: dannyhs/propiedades:1d6f865833371f26544db1f0bf27c4
+    image: dannyhs/propiedades:stage-v5
     build: .
     ports:
       - 8083:8080
