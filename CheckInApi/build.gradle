@@ -25,6 +25,9 @@ dependencies {
     implementation 'org.springframework.kafka:spring-kafka'
     implementation 'org.apache.kafka:kafka-streams'
 	implementation 'org.postgresql:postgresql:42.4.2'
+	implementation 'org.springframework.boot:spring-boot-starter-actuator:3.1.5'
+	implementation 'io.micrometer:micrometer-registry-prometheus:1.12.2'
+
     //runtimeOnly 'org.postgresql:postgresql'
     testImplementation 'org.junit.jupiter:junit-jupiter-api:5.8.1'
     testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.8.1'
@@ -33,7 +36,9 @@ dependencies {
 
 }
 
-test {useJUnitPlatform()}
+test {
+    useJUnitPlatform()
+}
 
 apply from: file("$rootProject.projectDir/gradle/heroku/stage.gradle")
 

@@ -18,6 +18,7 @@ repositories {
 
 dependencies {
 	implementation 'org.jacoco:org.jacoco.core:0.8.11'
+	implementation 'io.micrometer:micrometer-registry-prometheus:1.0.0-rc.1'
 }
 
 
