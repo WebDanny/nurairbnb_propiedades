@@ -38,7 +38,9 @@ public class PropiedadControllerTest {
   @Test
   void testListPropiedad() {
     List<PropiedadDto> propiedadDtos = new ArrayList<>();
-    propiedadDtos.add(new PropiedadDto(UUID.randomUUID(), "casa", "HABILITADO", 100.0));
+    propiedadDtos.add(
+        new PropiedadDto(
+            UUID.randomUUID(), "casa", "HABILITADO", 100.0, null, null, null, null, null, null));
     when(pipeline.send((Command<Object>) anyObject())).thenReturn(propiedadDtos);
 
     PropiedadController controller = new PropiedadController(pipeline);
@@ -48,7 +50,9 @@ public class PropiedadControllerTest {
 
   @Test
   void testCreatePropiedad() {
-    PropiedadDto propiedadDtos = new PropiedadDto(UUID.randomUUID(), "casa", "HABILITADO", 100.0);
+    PropiedadDto propiedadDtos =
+        new PropiedadDto(
+            UUID.randomUUID(), "casa", "HABILITADO", 100.0, null, null, null, null, null, null);
 
     when(pipeline.send((Command<Object>) anyObject())).thenReturn(propiedadDtos);
 
