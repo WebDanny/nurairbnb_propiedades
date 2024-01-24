@@ -31,4 +31,12 @@ public class ComodidadJpaModel {
   public void setNombre(String nombre) {
     this.nombre = nombre;
   }
+
+  public PropiedadJpaModel getPropiedades() {
+    return propiedades;
+  }
+
+  public void setPropiedades(PropiedadJpaModel propiedades) {
+    this.propiedades = propiedades;
+  }
 }

@@ -37,9 +37,8 @@ public class PropiedadJpaModel {
   @Column(name = "hora_checkin", nullable = false)
   public String hora_checkin;
 
-  @Lob
   @Column(name = "image", nullable = true)
-  private byte[] image;
+  private String image;
 
   public UUID getTipoPropiedadId() {
     return tipoPropiedadId;
@@ -113,11 +112,11 @@ public class PropiedadJpaModel {
     this.hora_checkin = hora_checkin;
   }
 
-  public byte[] getImage() {
+  public String getImage() {
     return image;
   }
 
-  public void setImage(byte[] image) {
+  public void setImage(String image) {
     this.image = image;
   }
 }

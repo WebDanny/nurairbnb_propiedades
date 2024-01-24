@@ -7,6 +7,7 @@ import com.nur.repositories.PropiedadRepository;
 import core.BusinessRuleValidationException;
 import dtos.PropiedadDto;
 import org.springframework.stereotype.Component;
+import utils.ComodidadMapper;
 import utils.PropiedadMapper;
 
 @Component
@@ -34,7 +35,7 @@ public class CreatePropiedadHandler
               request.propiedadDto.estado,
               request.propiedadDto.precio,
               request.propiedadDto.tipoPropiedadId,
-              null,
+              ComodidadMapper.from(request.propiedadDto.comodidades),
               request.propiedadDto.hora_checkin,
               request.propiedadDto.hora_checkout,
               request.propiedadDto.descripcion,

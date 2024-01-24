@@ -48,16 +48,17 @@ public class Propiedad extends AggregateRoot {
       String description,
       String image)
       throws BusinessRuleValidationException {
+
     this.id = UUID.fromString(id);
     this.nombre = nombre;
     if (estado.equals("HABILITADO")) this.estado = Estado.HABILITADO;
     else this.estado = Estado.INHABILITADO;
     this.precio = precio;
+    this.tipoPropiedad = new TipoPropiedad(tipoPropiedadId, null);
     this.image = image;
     this.hora_checkin = check_in;
     this.hora_checkout = check_out;
     this.descripcion = description;
-    this.tipoPropiedad = null;
     this.comodidades = comodidades;
   }
 

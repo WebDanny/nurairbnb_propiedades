@@ -21,11 +21,18 @@ public class PropiedadUtils {
     propiedadJpaModel.setNombre(propiedad.getNombre());
     propiedadJpaModel.setEstado(propiedad.getEstado().toString());
     propiedadJpaModel.setPrecio(propiedad.getPrecio());
+    propiedadJpaModel.setTipoPropiedadId(propiedad.getTipoPropiedad().getId());
+    propiedadJpaModel.setComodidades(null); // (ComodidadToJpaModel(comodidadList, pro));
+    propiedadJpaModel.setHora_checkin(propiedad.getHora_checkin());
+    propiedadJpaModel.setHora_checkout(propiedad.getHora_checkout());
+    propiedadJpaModel.setDescripcion(propiedad.getDescripcion());
+    propiedadJpaModel.setImage(propiedad.getImage());
     return propiedadJpaModel;
   }
 
   public static List<PropiedadJpaModel> propiedadToJpaEntities(List<Propiedad> propiedades) {
     if (propiedades == null) return Collections.emptyList();
+
     return propiedades.stream()
         .map(PropiedadUtils::propiedadToJpaEntity)
         .collect(Collectors.toList());
@@ -43,7 +50,7 @@ public class PropiedadUtils {
         jpaModel.getHora_checkin(),
         jpaModel.getHora_checkout(),
         jpaModel.getDescripcion(),
-        null);
+        jpaModel.getImage());
   }
 
   public static List<Comodidad> ComodidadJpaModelTocomodidad(List<ComodidadJpaModel> jpaModel)
@@ -54,6 +61,22 @@ public class PropiedadUtils {
     }
     for (int i = 0; i < jpaModel.size(); i++) {
       comodidadList.add(new Comodidad(jpaModel.get(i).getId(), jpaModel.get(i).getNombre()));
+    }
+    return comodidadList;
+  }
+
+  public static List<ComodidadJpaModel> ComodidadToJpaModel(
+      List<Comodidad> comodidads, PropiedadJpaModel propiedad) {
+    List<ComodidadJpaModel> comodidadList = new ArrayList<>();
+    if (comodidads == null) {
+      return comodidadList;
+    }
+    for (int i = 0; i < comodidads.size(); i++) {
+      ComodidadJpaModel item = new ComodidadJpaModel();
+      item.setId(comodidads.get(i).getId());
+      item.setNombre(comodidads.get(i).getNombre());
+      item.setPropiedades(propiedad);
+      comodidadList.add(item);
     }
     return comodidadList;
   }
