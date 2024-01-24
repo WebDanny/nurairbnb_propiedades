@@ -17,27 +17,48 @@ public class Propiedad extends AggregateRoot {
   private double precio;
 
   private TipoPropiedad tipoPropiedad;
-  private List<CaracteristicasPropiedad> caracteristicasPropiedades;
 
-  private TipoPropiedad getTipoPropiedad() {
+  private List<Comodidad> comodidades;
+
+  private String descripcion;
+  private String hora_checkout;
+  private String hora_checkin;
+
+  private String image;
+
+  public TipoPropiedad getTipoPropiedad() {
     return tipoPropiedad;
   }
 
   public Propiedad() {
     this.tipoPropiedad = new TipoPropiedad();
-    this.caracteristicasPropiedades = new ArrayList<>();
+    this.comodidades = new ArrayList<>();
     // this.Id = id;
   }
 
-  public Propiedad(String id, String nombre, String estado, double precio)
+  public Propiedad(
+      String id,
+      String nombre,
+      String estado,
+      double precio,
+      UUID tipoPropiedadId,
+      List<Comodidad> comodidades,
+      String check_in,
+      String check_out,
+      String description,
+      String image)
       throws BusinessRuleValidationException {
     this.id = UUID.fromString(id);
     this.nombre = nombre;
     if (estado.equals("HABILITADO")) this.estado = Estado.HABILITADO;
     else this.estado = Estado.INHABILITADO;
     this.precio = precio;
-    // this.tipoPropiedad = new TipoPropiedad();
-    // this.caracteristicasPropiedades = new ArrayList<>();
+    this.image = image;
+    this.hora_checkin = check_in;
+    this.hora_checkout = check_out;
+    this.descripcion = description;
+    this.tipoPropiedad = null;
+    this.comodidades = comodidades;
   }
 
   public void agregarCaracteristica(
@@ -51,21 +72,11 @@ public class Propiedad extends AggregateRoot {
       boolean shampoo,
       boolean aguaCaliente)
       throws Exception {
-    if (caracteristicasPropiedades.stream().anyMatch(item -> item.id == id)) {
+    if (comodidades.stream().anyMatch(item -> item.id == id)) {
       throw new Exception("Esa caracteristica ya existe en la propiedad");
     }
-    CaracteristicasPropiedad item =
-        new CaracteristicasPropiedad(
-            id,
-            cocina,
-            wifi,
-            estacionamiento,
-            camaraSeguridad,
-            detectorHumo,
-            secadoraPelo,
-            shampoo,
-            aguaCaliente);
-    caracteristicasPropiedades.add(item);
+    Comodidad item = new Comodidad(id, descripcion);
+    comodidades.add(item);
   }
 
   public void agregarTipoPropiedad(UUID IdTipo, String descripcion) {
@@ -102,7 +113,23 @@ public class Propiedad extends AggregateRoot {
     return precio;
   }
 
-  public List<CaracteristicasPropiedad> getCaracteristicasPropiedades() {
-    return caracteristicasPropiedades;
+  public List<Comodidad> getComodidades() {
+    return comodidades;
+  }
+
+  public String getDescripcion() {
+    return descripcion;
+  }
+
+  public String getHora_checkout() {
+    return hora_checkout;
+  }
+
+  public String getHora_checkin() {
+    return hora_checkin;
+  }
+
+  public String getImage() {
+    return image;
   }
 }

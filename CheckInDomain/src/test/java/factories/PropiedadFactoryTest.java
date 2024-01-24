@@ -24,7 +24,9 @@ class PropiedadFactoryTest {
     String estado = "Available";
     double precio = 1000.0;
 
-    Propiedad propiedad = checkInFactory.create(String.valueOf(id), nombre, estado, precio);
+    Propiedad propiedad =
+        checkInFactory.create(
+            String.valueOf(id), nombre, estado, precio, null, null, null, null, null, null);
 
     Assertions.assertNotNull(propiedad);
     Assertions.assertEquals(id, propiedad.getId());

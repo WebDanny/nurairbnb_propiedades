@@ -9,6 +9,7 @@ import com.nur.annotations.Generated;
 import com.nur.repositories.*;
 import infraestructure.repositories.MetodoPago.MetodoPagoJpaRepository;
 import infraestructure.repositories.check.in.CheckInJpaRepository;
+import infraestructure.repositories.comodidad.ComodidadJpaRepository;
 import infraestructure.repositories.persona.PersonaJpaRepository;
 import infraestructure.repositories.propiedad.PropiedadJpaRepository;
 import infraestructure.repositories.tipoPropiedad.TipoPropiedadJpaRepository;
@@ -77,6 +78,11 @@ public class CheckInApiApplication {
   public MetodoPagoRepository metodoPagoRepository() {
 
     return new MetodoPagoJpaRepository();
+  }
+
+  @Bean(name = "comodidadRepository")
+  public ComodidadRepository comodidadRepository() {
+    return new ComodidadJpaRepository();
   }
 
   @Bean(name = "propiedadRepository")

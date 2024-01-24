@@ -13,7 +13,7 @@ import org.junit.jupiter.api.Test;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 
-public class PersonaControllerTest {
+class PersonaControllerTest {
 
   @Mock Pipeline pipeline;
 
@@ -29,7 +29,7 @@ public class PersonaControllerTest {
     when(pipeline.send((Command<Object>) anyObject())).thenReturn(personaDtos);
 
     PersonaController controller = new PersonaController(pipeline);
-    List<PersonaDto> response = controller.getPassengers();
+    List<PersonaDto> response = controller.getPersonas();
     assertNotNull(response);
   }
 }

@@ -19,15 +19,6 @@ class PropiedadTest {
   }
 
   @Test
-  void testAgregarCaracteristica() throws Exception {
-    UUID caracteristicaId = UUID.randomUUID();
-    propiedad.agregarCaracteristica(
-        caracteristicaId, true, false, false, false, false, false, false, false);
-
-    assertEquals(1, propiedad.getCaracteristicasPropiedades().size());
-  }
-
-  @Test
   void testModificarPropiedad() throws BusinessRuleValidationException {
     UUID propiedadId = UUID.randomUUID();
     String nombre = "New Property";
@@ -55,7 +46,7 @@ class PropiedadTest {
     String descripcion = "Some description";
 
     propiedad.agregarTipoPropiedad(idTipo, descripcion);
-    assertNotNull(propiedad.getCaracteristicasPropiedades());
+    assertNotNull(propiedad.getComodidades());
   }
 
   @Test

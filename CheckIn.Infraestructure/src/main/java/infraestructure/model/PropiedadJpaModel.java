@@ -1,9 +1,8 @@
 package infraestructure.model;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.UUID;
 
 @Entity
@@ -22,6 +21,33 @@ public class PropiedadJpaModel {
 
   @Column(nullable = false)
   public double precio;
+
+  @Column(nullable = false)
+  UUID tipoPropiedadId;
+
+  @OneToMany(mappedBy = "propiedades", cascade = CascadeType.REMOVE)
+  private List<ComodidadJpaModel> comodidades = new ArrayList<>();
+
+  @Column(name = "descripcion", nullable = true)
+  public String descripcion;
+
+  @Column(name = "hora_checkout", nullable = false)
+  public String hora_checkout;
+
+  @Column(name = "hora_checkin", nullable = false)
+  public String hora_checkin;
+
+  @Lob
+  @Column(name = "image", nullable = true)
+  private byte[] image;
+
+  public UUID getTipoPropiedadId() {
+    return tipoPropiedadId;
+  }
+
+  public void setTipoPropiedadId(UUID tipoPropiedadId) {
+    this.tipoPropiedadId = tipoPropiedadId;
+  }
 
   public UUID getId() {
     return id;
@@ -53,5 +79,45 @@ public class PropiedadJpaModel {
 
   public void setPrecio(double precio) {
     this.precio = precio;
+  }
+
+  public List<ComodidadJpaModel> getComodidades() {
+    return comodidades;
+  }
+
+  public void setComodidades(List<ComodidadJpaModel> comodidades) {
+    this.comodidades = comodidades;
+  }
+
+  public String getDescripcion() {
+    return descripcion;
+  }
+
+  public void setDescripcion(String descripcion) {
+    this.descripcion = descripcion;
+  }
+
+  public String getHora_checkout() {
+    return hora_checkout;
+  }
+
+  public void setHora_checkout(String hora_checkout) {
+    this.hora_checkout = hora_checkout;
+  }
+
+  public String getHora_checkin() {
+    return hora_checkin;
+  }
+
+  public void setHora_checkin(String hora_checkin) {
+    this.hora_checkin = hora_checkin;
+  }
+
+  public byte[] getImage() {
+    return image;
+  }
+
+  public void setImage(byte[] image) {
+    this.image = image;
   }
 }

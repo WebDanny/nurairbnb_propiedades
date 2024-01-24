@@ -20,7 +20,7 @@ import java.util.UUID;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-public class AssignPropiedadHandlerTest {
+class AssignPropiedadHandlerTest {
 
   private CheckInRepository checkInRepository;
   private PropiedadRepository propiedadRepository;
@@ -36,7 +36,9 @@ public class AssignPropiedadHandlerTest {
   @Test
   public void testHandle() throws Exception {
     List<PropiedadDto> listDto = new ArrayList<>();
-    PropiedadDto propiedadDTo = new PropiedadDto(UUID.randomUUID(), "Casa", "HABILITADA", 100.0);
+    PropiedadDto propiedadDTo =
+        new PropiedadDto(
+            UUID.randomUUID(), "Casa", "HABILITADA", 100.0, null, null, null, null, null, null);
 
     CheckInDto dto =
         new CheckInDto(
@@ -49,7 +51,18 @@ public class AssignPropiedadHandlerTest {
 
     AssignPropiedadCommand command = new AssignPropiedadCommand(dto);
     List<Propiedad> list = new ArrayList<>();
-    list.add(new Propiedad(String.valueOf(UUID.randomUUID()), "Casa", "HABILITADA", 100.0));
+    list.add(
+        new Propiedad(
+            String.valueOf(UUID.randomUUID()),
+            "Casa",
+            "HABILITADA",
+            100.0,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null));
     CheckIn mockCheckIn =
         new CheckIn(
             UUID.randomUUID(),

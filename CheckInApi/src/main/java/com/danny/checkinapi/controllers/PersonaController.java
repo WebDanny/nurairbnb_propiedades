@@ -20,8 +20,8 @@ public class PersonaController {
     this.pipeline = pipeline;
   }
 
-  @GetMapping("/persona")
-  public List<PersonaDto> getPassengers() {
+  @GetMapping("/personas")
+  public List<PersonaDto> getPersonas() {
     GetPersonaQuery query = new GetPersonaQuery();
     return query.execute(pipeline);
   }

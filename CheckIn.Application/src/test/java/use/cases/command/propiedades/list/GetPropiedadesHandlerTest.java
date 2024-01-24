@@ -29,7 +29,18 @@ class GetPropiedadesHandlerTest {
   @Test
   public void testHandle() throws BusinessRuleValidationException {
     List<Propiedad> mockPropiedades =
-        Arrays.asList(new Propiedad(UUID.randomUUID().toString(), "Casa", "HABILITADA", 100.0));
+        Arrays.asList(
+            new Propiedad(
+                UUID.randomUUID().toString(),
+                "Casa",
+                "HABILITADA",
+                100.0,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null));
     when(propiedadRepository.getAll()).thenReturn(mockPropiedades);
 
     List<PropiedadDto> result = getPropiedadesHandler.handle(new GetPropiedadesQuery());

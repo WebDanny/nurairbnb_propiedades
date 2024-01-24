@@ -53,11 +53,11 @@ public class PropiedadJpaRepository implements PropiedadRepository {
   @Override
   public List<Propiedad> getAll() throws BusinessRuleValidationException {
     List<PropiedadJpaModel> jpaModels = Streamable.of(propiedadCrudRepository.findAll()).toList();
-    List<Propiedad> propiedads = new ArrayList<>();
+    List<Propiedad> propiedades = new ArrayList<>();
     for (PropiedadJpaModel jpaModel : jpaModels) {
-      propiedads.add(PropiedadUtils.jpaModelToPropiedad(jpaModel));
+      propiedades.add(PropiedadUtils.jpaModelToPropiedad(jpaModel));
     }
-    return propiedads;
+    return propiedades;
   }
 
   public void setPropiedadCrudRepository(PropiedadCrudRepository propiedadCrudRepository) {

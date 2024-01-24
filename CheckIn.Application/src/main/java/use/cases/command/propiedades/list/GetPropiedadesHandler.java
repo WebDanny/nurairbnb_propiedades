@@ -27,6 +27,7 @@ public class GetPropiedadesHandler
       return propiedad.stream().map(PropiedadMapper::from).collect(Collectors.toList());
     } catch (BusinessRuleValidationException e) {
       e.printStackTrace();
+      System.out.println("ERROR " + this.getClass().toString());
       return null;
     }
   }

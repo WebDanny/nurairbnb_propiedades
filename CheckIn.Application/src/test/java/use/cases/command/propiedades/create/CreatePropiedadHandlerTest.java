@@ -26,7 +26,8 @@ public class CreatePropiedadHandlerTest {
   @Test
   public void testHandle() {
     PropiedadDto mockPropiedadDto =
-        new PropiedadDto(UUID.randomUUID(), "casa", "HABILITADA", 100.0);
+        new PropiedadDto(
+            UUID.randomUUID(), "Casa", "HABILITADA", 100.0, null, null, null, null, null, null);
     CreatePropiedadCommand command = new CreatePropiedadCommand(mockPropiedadDto);
     when(propiedadRepository.update(any(Propiedad.class))).thenReturn(UUID.randomUUID());
 

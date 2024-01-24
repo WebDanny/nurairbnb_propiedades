@@ -32,7 +32,13 @@ public class CreatePropiedadHandler
               String.valueOf(request.propiedadDto.id),
               request.propiedadDto.nombre,
               request.propiedadDto.estado,
-              request.propiedadDto.precio);
+              request.propiedadDto.precio,
+              request.propiedadDto.tipoPropiedadId,
+              null,
+              request.propiedadDto.hora_checkin,
+              request.propiedadDto.hora_checkout,
+              request.propiedadDto.descripcion,
+              request.propiedadDto.image);
       propiedadRepository.update(propiedad);
       return PropiedadMapper.from(propiedad);
     } catch (BusinessRuleValidationException e) {

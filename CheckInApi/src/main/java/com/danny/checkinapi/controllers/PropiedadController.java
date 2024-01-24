@@ -38,7 +38,7 @@ public class PropiedadController {
     return query.execute(pipeline);
   }
 
-  @PostMapping("/create-propiedad")
+  @PostMapping("/propiedad/create")
   public PropiedadDto createPropiedad(@RequestBody PropiedadDto propiedad) {
 
     CreatePropiedadCommand command = new CreatePropiedadCommand(propiedad);
